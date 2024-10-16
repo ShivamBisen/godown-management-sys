@@ -1,4 +1,5 @@
 import React from 'react';
+import Image from 'next/image';
 
 // Define the structure of the item
 interface ItemAttributes {
@@ -25,10 +26,12 @@ const ItemCard: React.FC<{ item: Item | null }> = ({ item }) => {
 
   return (
     <div className="flex flex-col border rounded-lg shadow-md p-4">
-      <img
+      <Image
         src={item.image_url}
         alt={item.name}
-        className="object-cover w-full h-64 rounded mb-4"
+        width={500} // Adjust width as needed
+        height={400} // Adjust height as needed
+        className="object-cover rounded mb-4"
       />
       <h2 className="text-lg font-semibold mb-2">{item.name}</h2>
       <p className="text-sm text-gray-600 mb-1">Brand: {item.brand}</p>
