@@ -1,6 +1,26 @@
 import React from 'react';
 
-const ItemCard: React.FC<{ item: any }> = ({ item }) => {
+// Define the structure of the item
+interface ItemAttributes {
+  type: string;
+  material: string;
+  warranty_years: number;
+}
+
+interface Item {
+  item_id: string;
+  name: string;
+  quantity: number;
+  category: string;
+  price: number;
+  status: string;
+  godown_id: string;
+  brand: string;
+  attributes: ItemAttributes;
+  image_url: string;
+}
+
+const ItemCard: React.FC<{ item: Item | null }> = ({ item }) => {
   if (!item) return null; 
 
   return (

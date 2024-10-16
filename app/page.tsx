@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import ItemCard from "./components/ItemCard";
-import { useRouter } from "next/navigation";
+
 import Slidebar from "./components/Slidebar";
 
 export default function Page() {
@@ -11,13 +11,13 @@ export default function Page() {
   const [godowns, setGodowns] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Fetching data from API
+ 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // Replace with your actual API endpoints
-        const itemsResponse = await fetch('/api/items'); // Adjust the URL as needed
-        const godownsResponse = await fetch('/api/godowns'); // Adjust the URL as needed
+       
+        const itemsResponse = await fetch('/api/items'); 
+        const godownsResponse = await fetch('/api/godowns'); 
         
         if (!itemsResponse.ok || !godownsResponse.ok) {
           throw new Error('Failed to fetch data');
@@ -37,7 +37,7 @@ export default function Page() {
 
     fetchData();
   }, []);
-// @ts-ignore
+// @ts-expect-error
   const handleSelectItem = (item) => {
     setSelectedItem(item);
   };
