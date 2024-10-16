@@ -2,20 +2,34 @@
 
 import React, { useEffect, useState } from "react";
 import ItemCard from "./components/ItemCard";
-
 import Slidebar from "./components/Slidebar";
 
+interface Item {
+  item_id: string;
+  name: string;
+  quantity: number;
+  category: string;
+  price: number;
+  status: string;
+  godown_id: string;
+  brand: string;
+  attributes: {
+    type: string;
+    material: string;
+    warranty_years: number;
+  };
+  image_url: string;
+}
+
 export default function Page() {
-  const [selectedItem, setSelectedItem] = useState(null);
-  const [items, setItems] = useState([]);
+  const [selectedItem, setSelectedItem] = useState<Item | null>(null);
+  const [items, setItems] = useState<Item[]>([]);
   const [godowns, setGodowns] = useState([]);
   const [loading, setLoading] = useState(true);
 
- 
   useEffect(() => {
     const fetchData = async () => {
       try {
-       
         const itemsResponse = await fetch('/api/items'); 
         const godownsResponse = await fetch('/api/godowns'); 
         
@@ -37,8 +51,8 @@ export default function Page() {
 
     fetchData();
   }, []);
-// @ts-expect-error
-  const handleSelectItem = (item) => {
+
+  const handleSelectItem = (item: Item | null) => {
     setSelectedItem(item);
   };
 
